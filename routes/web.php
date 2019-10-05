@@ -11,14 +11,18 @@
 |
 */
 
-#Route::get('/', function () {
-#    return view('welcome');
-#});
-
-Route::get('/', function(){
-  return view('principal');
+Route::get('/', function () {
+    return view('welcome');
 });
+
+#Route::get('/', function(){
+#  return view('principal');
+#});
 
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
