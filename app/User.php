@@ -10,6 +10,15 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    public function candidato(){
+      return $this->hasOne('App\Candidato');
+    }
+
+    public function empresa(){
+      return $this->hasOne('App\Empresa');
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *
