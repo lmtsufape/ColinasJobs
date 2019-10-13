@@ -12,11 +12,13 @@ class EmpresaController extends Controller
     return view('oportunidade');
   }
   public function adicionar(Request $request){
-    // dd($request);
+     //dd($request);
     Empresa::create([
       'user_id' => Auth::user()->id,
       'nome_empresa' => $request->nome_empresa,
-      'descricao' => $request->descricao,
+      'cnpj' => $request->cnpj,
+      'telefone' => $request->telefone,
+      'email' => $request->email,
     ]);
     return view('principal_empresa');
   }

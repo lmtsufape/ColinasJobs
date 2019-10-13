@@ -19,8 +19,10 @@
                     You are logged in!
                     <div>
                       <form action="{{route('adicionar')}}">
-                          Nome completo <input type="text" name="nome_completo" placeholder="ex. Maria José da Silva"><br>
-                          Descricao <input type="text" name="descricao" placeholder="ex. já trabalhei com vendas.."><br>
+                          Nome Completo <input type="text" name="nome_completo" placeholder="ex. Maria José da Silva"><br>
+                          CPF <input type="text" name="cpf" placeholder="xxx.xxx.xxx-xx"><br>
+                          E-mail <input type="text" name="email" placeholder="exemplo@email.com"><br>
+                          Data de Nascimento <input type="date" name="data_de_nascimento" placeholder="dd/mm/aaaa   "><br>
                           <button type="submit">Salvar curriculo</button>
                       </form>
                     </div>

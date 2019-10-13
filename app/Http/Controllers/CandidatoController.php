@@ -15,7 +15,9 @@ class CandidatoController extends Controller
       Candidato::create([
         'user_id'=>Auth::user()->id,
         'nome_completo'=>$request->nome_completo,
-        'descricao'=>$request->descricao,
+        'cpf'=>$request->cpf,
+        'email'=>$request->email,
+        'data_de_nascimento'=>$request->data_de_nascimento,
       ]);
       return view('principal_candidato');
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCandidatosTable extends Migration
+class CreateCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCandidatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('candidatos', function (Blueprint $table) {
+        Schema::create('cargos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->nullable();
-            $table->string('nome_completo')->nullable();
-            $table->string('cpf')->nullable();
-            $table->string('email')->nullable();
-            $table->date('data_de_nascimento')->nullable();
+            $table->integer('experiencia_id')->nullable();
+            $table->string('nome_cargo')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCandidatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidatos');
+        Schema::dropIfExists('cargos');
     }
 }
