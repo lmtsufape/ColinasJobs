@@ -16,7 +16,15 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Lista de oportunidades
+                    <div style="height: 5rem; overflow: auto">
+                        <ul>
+                            @foreach ($empresas as $empresa)
+                                <li>{{$empresa->nome_empresa}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    {{$empresas->links()}}
                 </div>
             </div>
         </div>

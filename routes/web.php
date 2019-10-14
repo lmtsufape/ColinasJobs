@@ -30,9 +30,11 @@ Route::group(['middleware' => 'verifica_email'], function(){
 
   Route::get('/tipo', function(){return view('tipo_de_usuario');})->name('tipo')->middleware('auth');
 
+  #Candidato
+
   Route::get('/curriculum', 'CandidatoController@cadastrarCurriculo')->name('curriculum');
 
-  Route::get('/adicionarCurriculum', 'CandidatoController@adicionar')->name('adicionar');
+  Route::get('/adicionarCurriculum', 'CandidatoController@adicionar')->name('adicionarCurriculum');
 
   #Empresa
 

@@ -20,6 +20,6 @@ class EmpresaController extends Controller
       'telefone' => $request->telefone,
       'email' => $request->email,
     ]);
-    return view('principal_empresa');
+    return redirect()->route('home');//view('principal_empresa');
   }
 }

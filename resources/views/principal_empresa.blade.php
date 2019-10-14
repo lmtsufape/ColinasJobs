@@ -16,7 +16,14 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Lista de candidatos
+                    <div style="height: 5rem; overflow: auto">
+                        <ul>
+                            @foreach ($candidatos as $candidato)
+                                <li>{{$candidato->nome_completo}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

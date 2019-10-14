@@ -18,6 +18,10 @@ class CandidatoController extends Controller
         'cpf'=>$request->cpf,
         'email'=>$request->email,
         'data_de_nascimento'=>$request->data_de_nascimento,
+        'telefone'=>$request->telefone,
+        'celular'=>$request->celular,
+        'nivel_de_formacao'=>$request->nivel_de_formacao,
+        'tipo_de_deficiencia'=>$request->tipo_de_deficiencia,
       ]);
       return view('principal_candidato');
     }
