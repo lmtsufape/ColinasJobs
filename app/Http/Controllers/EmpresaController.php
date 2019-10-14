@@ -12,12 +12,18 @@ class EmpresaController extends Controller
     return view('oportunidade');
   }
   public function adicionar(Request $request){
-    // dd($request);
+     //dd($request);
     Empresa::create([
       'user_id' => Auth::user()->id,
       'nome_empresa' => $request->nome_empresa,
-      'descricao' => $request->descricao,
+      'cnpj' => $request->cnpj,
+      'telefone' => $request->telefone,
+      'email' => $request->email,
     ]);
-    return view('principal_empresa');
+    return redirect()->route('home');//view('principal_empresa');
+  }
+  public function buscarOportunidade(Request $request){
+    $empresas = Empresa::where('nome_empresa', 'like', '%' . strtolower($request->busca) . '%')-> paginate(10);
+    return view('principal_candidato', ['empresas' => $empresas]);
   }
 }

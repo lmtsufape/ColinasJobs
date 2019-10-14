@@ -15,8 +15,18 @@ class CandidatoController extends Controller
       Candidato::create([
         'user_id'=>Auth::user()->id,
         'nome_completo'=>$request->nome_completo,
-        'descricao'=>$request->descricao,
+        'cpf'=>$request->cpf,
+        'email'=>$request->email,
+        'data_de_nascimento'=>$request->data_de_nascimento,
+        'telefone'=>$request->telefone,
+        'celular'=>$request->celular,
+        'nivel_de_formacao'=>$request->nivel_de_formacao,
+        'tipo_de_deficiencia'=>$request->tipo_de_deficiencia,
       ]);
-      return view('principal_candidato');
+      return redirect()->route('home');//view('principal_candidato');
     }
+    public function buscarCandidato(Request $request){
+        $candidatos = Candidato::where('nome_completo', 'like', '%' . strtolower($request->busca) . '%')-> paginate(10);
+        return view('principal_empresa', ['candidatos' => $candidatos]);
+      }
 }

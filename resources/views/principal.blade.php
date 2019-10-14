@@ -55,7 +55,7 @@
           <button class="tablinks" style="height:100%; background-color: rgba(223,191,151,0.7); color:black;" onclick="openConteudo(event, 'Sou_Empresa')">Sou Empresa</button>
         </div>
         <div class="area_selecao">
-          <div id="Sou_Candidato" class="tabcontent" style="height:100%; display: block; background-color: rgba(80,109,125,0.9);">
+          <div id="Sou_Candidato" class="tabcontent">
             <p style="font-size: 35px;margin-left:10%;margin-top:40px; color:white;">Queremos ver você de emprego novo.</p>
             <div class="divs_campo_textos_candidato">
               <div class="campo_texto">

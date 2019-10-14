@@ -15,8 +15,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <form action="{{route('buscarCandidato')}}" method="GET">
+                        <input type="text" name="busca">
+                        <button type="submit"> Procurar</button>
+                    </form>
+                    Lista de candidatos
+                    <div style="height: 5rem; overflow: auto">
+                        <ul>
+                            @foreach ($candidatos as $candidato)
+                                <li>{{$candidato->nome_completo}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

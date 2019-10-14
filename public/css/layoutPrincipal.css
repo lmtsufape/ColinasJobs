@@ -55,37 +55,16 @@
 #form_options{
   font-size: 10px;
 }
-.area_selecao{
-  position:absolute;
-  background-color:rgba(255,255,255,0.4);
-  width: 360px;
-  height:200px;
-  left:18%;
-  top:25%;
-}
 
-@media (min-width: 600px){
-  .area_selecao{
-    position:absolute;
-    background-color:rgba(255,255,255,0.4);
-    width: 750px;
-    height:300px;
-    left:20%;
-    top:40%;
-  }
-}
+
+
+
+
 
 /*seletor "Sou Candidato/Sou Empresa"*/
 
 /* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  position: absolute;
-  left:38%;
-  top:31%;;
-}
+
 
 /* Style the buttons inside the tab */
 .tab button {
