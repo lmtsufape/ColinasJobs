@@ -76,5 +76,6 @@
             @yield('content')
         </main>
     </div>
+    <img src="{{asset('img_home/trabalhador1.jpg')}}" height: "100%" width="100%">
 </body>
 </html>
