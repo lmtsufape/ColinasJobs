@@ -23,6 +23,10 @@ class CandidatoController extends Controller
         'nivel_de_formacao'=>$request->nivel_de_formacao,
         'tipo_de_deficiencia'=>$request->tipo_de_deficiencia,
       ]);
-      return view('principal_candidato');
+      return redirect()->route('home');//view('principal_candidato');
     }
+    public function buscarCandidato(Request $request){
+        $candidatos = Candidato::where('nome_completo', 'like', '%' . strtolower($request->busca) . '%')-> paginate(10);
+        return view('principal_empresa', ['candidatos' => $candidatos]);
+      }
 }

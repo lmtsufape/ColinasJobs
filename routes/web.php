@@ -36,10 +36,14 @@ Route::group(['middleware' => 'verifica_email'], function(){
 
   Route::get('/adicionarCurriculum', 'CandidatoController@adicionar')->name('adicionarCurriculum');
 
+  Route::get('/resultadoOportunidade', 'EmpresaController@buscarOportunidade')->name('buscarOportunidade');
+
   #Empresa
 
   Route::get('/oportunidade', 'EmpresaController@cadastrarVaga')->name('oportunidade');
 
   Route::post('/adicionarOportunidade', 'EmpresaController@adicionar')->name('adicionarOportunidade');
+
+  Route::get('/resultadoCandidato', 'CandidatoController@buscarCandidato') ->name('buscarCandidato');
 
 });

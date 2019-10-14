@@ -15,12 +15,18 @@ class CreateVagasTable extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('candidato_id')->unique();
+            $table->integer('empresa_id')->unique();
             $table->date('data_publicacao')->nullable();
             $table->string('nome_vaga')->nullable();
             $table->string('atribuicoes')->nullable();
             $table->string('experiencia')->nullable();
             $table->string('descricao')->nullable();
             $table->integer('quantidade')->nullable();
+            $table->float('salario');
+            $table->boolean('vaga_para_pcd')->nullable();
+            $table->string('tipo_de_vaga')->nullable();
+            $table->string('tipo_de_remuneracao')->nullable();
             $table->timestamps();
         });
     }

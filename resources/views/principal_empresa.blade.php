@@ -15,7 +15,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <form action="{{route('buscarCandidato')}}" method="GET">
+                        <input type="text" name="busca">
+                        <button type="submit"> Procurar</button>
+                    </form>
                     Lista de candidatos
                     <div style="height: 5rem; overflow: auto">
                         <ul>

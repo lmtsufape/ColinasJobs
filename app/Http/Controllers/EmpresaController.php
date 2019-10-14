@@ -22,4 +22,8 @@ class EmpresaController extends Controller
     ]);
     return redirect()->route('home');//view('principal_empresa');
   }
+  public function buscarOportunidade(Request $request){
+    $empresas = Empresa::where('nome_empresa', 'like', '%' . strtolower($request->busca) . '%')-> paginate(10);
+    return view('principal_candidato', ['empresas' => $empresas]);
+  }
 }
