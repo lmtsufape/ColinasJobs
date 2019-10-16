@@ -6,9 +6,18 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+
+    public function candidato(){
+      return $this->hasOne('App\Candidato');
+    }
+
+    public function empresa(){
+      return $this->hasOne('App\Empresa');
+    }
+
 
     /**
      * The attributes that are mass assignable.
