@@ -1,11 +1,8 @@
 @extends('layouts.app')
-
-<a>PREENCHA O SEU CURRICULO</a>
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="position: absolute; padding-top: 7.0rem;">
             <div class="card">
                 <div class="card-header">Currículo</div>
 
@@ -19,7 +16,7 @@
                       <form action="{{route('adicionarCurriculum')}}" id="form1">
                             <div class="form-group">
                                 <label for="nome_completo">Nome Completo</label>
-                                <input type="text" name="nome_completo" class="form-control" id="nome_completo"  placeholder="Seu email">
+                                <input type="text" name="nome_completo" class="form-control" id="nome_completo"  placeholder="Digite o seu nome completo">
                                 <small id="nome_completo" class="form-text text-muted">ex.: Maria José da Silva</small>
                             </div>
                             <div class="form-group">
@@ -39,13 +36,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="entradaTelefone">Telefone</label>
-                                <input type="tel" name="telefone" class="form-control" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: (XX)XXXXXXXXX">
-                                <small id="entradaTelefone" class="form-text text-muted">ex.: (XX)XXXXXXXXX</small>
+                                <input type="tel" name="telefone" class="form-control" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                <small id="entradaTelefone" class="form-text text-muted">ex.: XXXXXXXXXXX</small>
                             </div>
                             <div class="form-group">
                                 <label for="entradaCelular">Celular</label>
-                                <input type="tel" name="celular" class="form-control" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: (XX)XXXXXXXXX">
-                                <small id="entradaCelular" class="form-text text-muted">ex.: (XX)XXXXXXXXX</small>
+                                <input type="tel" name="celular" class="form-control" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                <small id="entradaCelular" class="form-text text-muted">ex.: XXXXXXXXXXX</small>
                             </div>
                             <div class="form-group">
                                 <label for="entradaCelular">Nivel de Formação</label>

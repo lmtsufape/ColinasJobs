@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
-<a>PAGINA PRINCIPAL DA EMPRESA</a>
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="position: absolute; padding-top: 7.0rem;">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -27,6 +25,19 @@
                             @endforeach
                         </ul>
                     </div>
+                    <form action="{{route('oportunidade')}}">
+                            <div class="btn-group" style="left:64px;">
+                        <button style="margin-top:35px;
+                            background-color:#4173c9;
+                            border: none;
+                            color: white;
+                            padding: 15px 32px;
+                            text-align: center;
+                            text-decoration: none;
+                            font-size: 19px;"
+                         type="submit">Nova Vaga</button>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>

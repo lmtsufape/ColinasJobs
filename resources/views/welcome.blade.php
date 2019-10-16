@@ -40,13 +40,15 @@
                 <div id="Sou_Candidato" class="tabcontent areaCorCandidato" style="display: block">
                     <p class="texto_sou_candidato">Queremos ver você de emprego novo.</p>
                     <div class="campos_candidato">
+                    <form action="{{ route('buscarNaoLogado')}}" method="GET">
                         <div class="campo_texto1">
                             <input type="text" value="" placeholder="Gerente, Motorista, Estágio"><br>
                         </div>
                         <div class="campo_texto2">
                             <input type="text" value="" placeholder="Garanhuns, Lajedo, Jupi"><br>
                         </div>
-                        <button class="buttonPesquisar" onclick="alert('BUSCA_VISAO_DO_CANDIDATO!')">Buscar</button>
+                        <button type="submit" class="buttonPesquisar">Buscar</button>
+                    </form>
                     </div>
                 </div>
                 <div id="Sou_Empresa" class="tabcontent areaCorEmpresa" style="display: none">

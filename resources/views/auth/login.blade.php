@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8" style="position: absolute; padding-top: 3.0rem;">
+        <div class="col-md-8" style="position: absolute; padding-top: 7.0rem;">
             <div class="card">
                 <div class="card-header">{{ __('Entrar') }}</div>
 
@@ -70,4 +70,6 @@
         </div>
     </div>
 </div>
+</div>
+<img style="width:100%; height:100%;" src="{{asset('img_home/trabalhador1.jpg')}}">
 @endsection

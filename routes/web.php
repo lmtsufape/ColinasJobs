@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('tipo_de_usuario');
+Route::get('/resultado', 'CandidatoController@buscarNaoLogado')->name('buscarNaoLogado');
 
 Route::group(['middleware' => 'verifica_email'], function(){
 
@@ -37,6 +38,8 @@ Route::group(['middleware' => 'verifica_email'], function(){
   Route::get('/adicionarCurriculum', 'CandidatoController@adicionar')->name('adicionarCurriculum');
 
   Route::get('/resultadoOportunidade', 'EmpresaController@buscarOportunidade')->name('buscarOportunidade');
+
+
 
   #Empresa
 

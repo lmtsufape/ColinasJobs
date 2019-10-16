@@ -28,14 +28,11 @@ class CreateChavesEstrangeirasTable extends Migration
       Schema::table('cargos', function (Blueprint $table){
         $table->foreign('experiencia_id')->references('id')->on('experiencias');
       });
-      Schema::table('enderecos', function (Blueprint $table){
-        $table->foreign('candidato_id')->references('id')->on('candidatos');
-        $table->foreign('empresa_id')->references('id')->on('empresas');
-      });
       Schema::table('vagas', function (Blueprint $table){
-        $table->foreign('candidato_id')->references('id')->on('candidatos');
         $table->foreign('empresa_id')->references('id')->on('empresas');
       });
+
+
 
     }
 

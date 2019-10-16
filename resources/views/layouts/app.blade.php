@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -20,8 +21,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div id="app" style="position: absolute; width:100%;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="position: absolute; width:100%;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -76,6 +77,6 @@
             @yield('content')
         </main>
     </div>
-    <img src="{{asset('img_home/trabalhador1.jpg')}}" height: "100%" width="100%">
+
 </body>
 </html>
