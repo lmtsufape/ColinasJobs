@@ -40,22 +40,30 @@
                 <div id="Sou_Candidato" class="tabcontent areaCorCandidato" style="display: block">
                     <p class="texto_sou_candidato">Queremos ver você de emprego novo.</p>
                     <div class="campos_candidato">
+                    <!-- Buscar oportunidade -->
+                    <form action="{{ route('buscarNaoLogado')}}" method="GET">
                         <div class="campo_texto1">
-                            <input type="text" value="" placeholder="Gerente, Motorista, Estágio"><br>
+                            <input type="text" name="campo_texto1" placeholder="Gerente, Motorista, Estágio"><br>
                         </div>
                         <div class="campo_texto2">
-                            <input type="text" value="" placeholder="Garanhuns, Lajedo, Jupi"><br>
+                            <input type="text" name="campo_texto2" placeholder="Garanhuns, Lajedo, Jupi"><br>
                         </div>
-                        <button class="buttonPesquisar" onclick="alert('BUSCA_VISAO_DO_CANDIDATO!')">Buscar</button>
+                        <button type="submit" class="buttonPesquisar">Buscar</button>
+                    </form>
+                    <!--x Buscar oportunidade x-->
                     </div>
                 </div>
                 <div id="Sou_Empresa" class="tabcontent areaCorEmpresa" style="display: none">
                     <p class="texto_sou_empresa">Encontre o candidato ideal.</p>
                     <div class="campos_empresa">
-                        <div>
-                            <input style="width:505px";type="text" value="" placeholder="Gerente, Motorista, Estágio"><br>
-                        </div>
-                        <button class="buttonPesquisar" type="button" onclick="alert('BUSCA_VISAO_DO_EMPREGADOR!')">Buscar</button>
+                        <!-- Buscar candidato -->
+                        <form action="{{ route('buscarNaoLogadoCandidato')}}" method="GET">
+                            <div>
+                                <input style="width:505px";type="text" name="campo_texto3" placeholder="Gerente, Motorista, Estágio"><br>
+                            </div>
+                            <button class="buttonPesquisar" type="submit">Buscar</button>
+                        </form>
+                        <!--x Buscar candidato x-->
                     </div>
                 </div>
             </div>

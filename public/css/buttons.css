@@ -1,0 +1,64 @@
+/*Botão */
+.buttonProcurar1 {
+    background-color:#4285f4;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 2px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 5px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    top:10px; padding-top:7px;
+  }
+
+  .buttonProcurar1 {
+    background-color: #4286f4;
+    color: white;
+    border: 2px solid #4285f4;
+  }
+
+  .buttonProcurar1:hover {
+    background-color: #356bc2;
+    color: white;
+    border: 2px solid white;
+  }
+/*Campo das oportunidades/vagas */
+  .buttonCampo1 {
+    background-color: #a53434;
+    /*background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);*/
+    border-radius: 12px;
+    border: 1px solid #e6e9f0;
+    color: white;
+    padding: 2px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 5px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    top:10px; padding-top:7px;
+    padding-left:15px;
+    width:232px;
+    padding-top:3px;
+    height:80px;
+  }
+
+  .buttonCampo1 {
+    background-color: #ebedee;
+    color: black;
+    border: 2px solid #ebedee;
+  }
+
+  .buttonCampo1:hover {
+    background-color: #4285f4;
+    color: white;
+    /* font-weight: bold; */
+    border: 2px solid white;
+  }

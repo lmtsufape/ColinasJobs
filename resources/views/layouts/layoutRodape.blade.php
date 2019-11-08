@@ -1,3 +1,4 @@
+@extends('layouts.layoutRodape')
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,10 +6,11 @@
   <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
   <link type="text/css" rel="stylesheet" media="screen" href="css/layoutRodape.css"/>
-  <title>@yield('title')</title>
+
 </head>
 <body>
-  @section('rodape')
+    @section('content')
+    <div class='rodape'>
     <div class="container_backgound_color"> <!--cor do fundo: cinza-->
       <div class="container">
         <div id="logo_rodape">
@@ -38,5 +40,7 @@
     <div class="container_rodape_credito">
       <p class="texto_rodape_credito"> Copyright © 2019 - colinasjobs. Todos os direitos reservados.</p>
     </div>
+    </div>
+    @endsection
 </body>
 </html>
