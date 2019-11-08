@@ -14,4 +14,8 @@ class Empresa extends Model{
   public function vaga(){
       return $this->hasMany('App\Vaga');
   }
+  public function endereco(){
+      return $this->hasOne('App\Endereco');
+  }
 }
+

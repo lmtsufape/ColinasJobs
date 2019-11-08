@@ -11,4 +11,7 @@ class Endereco extends Model
     public function user(){
         return $this->belongsTo('App\User', 'empresa_id');
     }
+    public function empresa(){
+        return $this->belongsTo('App\Empresa', 'empresa_id');
+    }
 }

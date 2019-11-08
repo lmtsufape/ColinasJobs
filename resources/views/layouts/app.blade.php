@@ -19,6 +19,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="screen" href="css/buttons.css"/>
+
+    <!-- Fonts Google -->
+    <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="buttons.css">
+
+
+
 </head>
 <body>
     <div id="app" style="position: absolute; width:100%;">
@@ -56,6 +66,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(!is_null( Auth::user()->candidato))
+                                        <a class="dropdown-item" href="{{ route('abrir_painel_curriculum') }}">
+                                            <div class="btn-group">
+                                                <div style="padding-left: 2%"><img src="icon/curriculum.png" alt="curriculum" width="17px" height="20px"></div>
+                                                <div style="margin-left:6px; margin-top:3px;">{{ __('Meu Currículo') }}</div>
+                                            </div>
+                                        </a>
+                                    <hr>
+                                    @elseif(!is_null( Auth::user()->empresa))
+                                        <a class="dropdown-item" href="{{ route('vaga') }}">
+                                            <div class="btn-group">
+                                                <div style="padding-left: 2%"><img src="icon/curriculum.png" alt="curriculum" width="17px" height="20px"></div>
+                                                <div style="margin-left:6px; margin-top:3px;">{{ __('Criar Vaga') }}</div>
+                                            </div>
+                                        </a>
+                                    <hr>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -66,6 +94,7 @@
                                         @csrf
                                     </form>
                                 </div>
+
                             </li>
                         @endguest
                     </ul>
