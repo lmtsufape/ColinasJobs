@@ -11,6 +11,8 @@ use App\Escolaridade;
 use App\Experiencia;
 use App\Cargo;
 use App\Match;
+use App\User;
+
 use Auth;
 use DB;
 
@@ -109,7 +111,7 @@ class CandidatoController extends Controller
         $this->validate($request,[
             'nome_completo'         => 'required|string|min:3|max:255',
             'cpf'                   => 'required|cpf',
-            'email'                 => 'required|email',
+
             'data_de_nascimento'    => 'required|date',
             'celular'               => 'numeric',
             'funcao'                => 'required|string|max:255',
@@ -118,11 +120,17 @@ class CandidatoController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+        $user->name = $request->nome_completo;
+        $user->save();
+
+
         Candidato::create([
             'user_id'            =>Auth::user()->id,
             'nome_completo'      =>$request->nome_completo,
             'cpf'                =>$request->cpf,
-            'email'              =>$request->email,
+            'email'              =>$user->email,
             'data_de_nascimento' =>$request->data_de_nascimento,
             'telefone'           =>$request->telefone,
             'funcao'             =>$request->funcao,
@@ -245,13 +253,20 @@ class CandidatoController extends Controller
         $this->validate($request,[
             'nome_completo'         => 'required|string|min:3|max:255',
             'cpf'                   => 'required|numeric|cpf',
-            'email'                 => 'required|email',
             'data_de_nascimento'    => 'required|date',
             'celular'               => 'required|numeric',
             'funcao'                => 'required|string|max:255',
             'nivel_de_formacao'     => 'required|string|max:255',
             'tipo_de_deficiencia'   => 'required|string|max:255',
         ]);
+
+        $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+        $user->name = $request->nome_completo;
+        $user->save();
+
+
         $resultado = DB::table('candidatos')
         ->where('candidatos.user_id', 'ilike', Auth::user()->id)
         ->update([
