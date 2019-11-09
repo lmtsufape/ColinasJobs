@@ -100,19 +100,10 @@
                                             <div style="margin-left:30px;">
                                                 <p>Você tem alguma deficiência?<a style="color:red"> *</a></p>
                                                 <div class="form-group">
-                                                    {{-- <div>
-                                                        <input type="checkbox" name="sim" value="Sim">Sim<br>
-                                                    </div>
-                                                    <div style="margin-left:15px;">
-                                                        <input type="checkbox" name="tipo_de_deficiencia" value="Não" checked>Não<br>
-                                                    </div> --}}
-
-                                                    {{-- Sim <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" > Não <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"><br>
+                                                    Sim <input type="radio" onclick="javascript:yesnoCheck();" name="tipo_de_deficiencia" id="yesCheck" > Não <input type="radio" onclick="javascript:yesnoCheck();" name="tipo_de_deficiencia" id="noCheck" checked>
                                                     <div id="ifYes" style="visibility:hidden">
-                                                        <textarea type='text' id='yes' name='yes' rows="1" cols="20" style="margin-top:9px;"></textarea>
-                                                    </div> --}}
-                                                    <input type="checkbox" name="tipo_de_deficiencia" value="Sim">Sim<br>
-                                                    <input type="checkbox" name="tipo_de_deficiencia" value="Nao" checked>Não<br>
+                                                        <textarea type='text' id='yes' name='tipo_de_deficiencia' rows="1" cols="20" style="margin-top:9px;"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                     </div>
@@ -158,21 +149,23 @@
                                                     </span>
                                                 @endif
                                         </div>
-                                        <div class="form-group" style="margin-left:10px;">
-                                            <label for="entradaFuncao">Função ou cargo pretendido<a style="color:red"> *</a></label>
-                                            @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
-                                                @foreach ($candidatos as $item)
-                                                    <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{$item->funcao}}" placeholder="Digite aqui a sua função">
-                                                @endforeach
-                                            @else
-                                                <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{ old('funcao') }}" placeholder="Digite aqui a sua função">
-                                            @endif
-                                            <small id="entradaFuncao" class="form-text text-muted">ex.: Pintor, Manobrista</small>
-                                            @error('funcao')
-                                                <div >
-                                                    <a style="color:red;">{{ $message }}</a>
-                                                </div>
-                                            @enderror
+                                        <div style="margin-left:10px;">
+                                            <div class="form-group" style="margin-left:10px;">
+                                                <label for="entradaFuncao">Função ou Cargo Pretendido<a style="color:red"> *</a></label>
+                                                @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
+                                                    @foreach ($candidatos as $item)
+                                                        <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{$item->funcao}}" placeholder="ex. mecânico, pintor, segurança">
+                                                    @endforeach
+                                                @else
+                                                    <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{ old('funcao') }}" placeholder="ex. mecânico, pintor, segurança">
+                                                @endif
+                                                <p style="color:blue;"><small>(Separe as Funções ou Cargos Pretendidos por vírgula)</small></p>
+                                                @error('funcao')
+                                                    <div>
+                                                        <a style="color:red;">{{ $message }}</a>
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
                                 </div><br>
                                 <div style="float:right;">
@@ -289,6 +282,7 @@ function yesnoCheck() {
         document.getElementById('ifYes').style.visibility = 'visible';
     }
     else document.getElementById('ifYes').style.visibility = 'hidden';
+    clearTextArea();
 }
 
 var teste = function(obj)
@@ -309,6 +303,9 @@ function termoDeCompromisso(){
     }
 }
 
+function clearTextArea() {
+    document.getElementById('yes').value = " ";
+}
 
 </script>
 @endsection
