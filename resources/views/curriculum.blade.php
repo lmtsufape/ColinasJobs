@@ -100,10 +100,28 @@
                                             <div style="margin-left:30px;">
                                                 <p>Você tem alguma deficiência?<a style="color:red"> *</a></p>
                                                 <div class="form-group">
-                                                    Sim <input type="radio" onclick="javascript:yesnoCheck();" name="tipo_de_deficiencia" id="yesCheck" > Não <input type="radio" onclick="javascript:yesnoCheck();" name="tipo_de_deficiencia" id="noCheck" checked>
-                                                    <div id="ifYes" style="visibility:hidden">
-                                                        <textarea type='text' id='yes' name='tipo_de_deficiencia' rows="1" cols="20" style="margin-top:9px;"></textarea>
-                                                    </div>
+                                                        @if(empty($candidatos))
+                                                            Sim <input type="radio" onclick="javascript:yesnoCheck('');" name="tipo_de_deficiencia" id="yesCheck" > Não <input type="radio" onclick="javascript:yesnoCheck('Nenhuma');" name="tipo_de_deficiencia" id="noCheck" checked >
+                                                        @else
+                                                            @foreach ($candidatos as $item)
+                                                                {{-- se retornar o nome "nenhuma" --}}
+                                                                @if(strpos($item->tipo_de_deficiencia,'Nenhuma')!==false)
+                                                                    Sim <input type="radio" onclick="javascript:yesnoCheck('');" name="tipo_de_deficiencia" id="yesCheck" > Não <input type="radio" onclick="javascript:yesnoCheck('Nenhuma');" name="tipo_de_deficiencia" id="noCheck" checked>
+                                                                {{-- se for um nome diferente de "nenhuma" --}}
+                                                                @else
+                                                                    Sim <input type="radio" onclick="javascript:yesnoCheck('{{$item->tipo_de_deficiencia}}');" name="tipo_de_deficiencia" id="yesCheck" checked> Não <input type="radio" onclick="javascript:yesnoCheck('Nenhuma');" name="tipo_de_deficiencia" id="noCheck">
+                                                                @endif
+                                                            @endforeach
+
+                                                        @endif
+                                                        <div id="ifYes" style="visibility:hidden">
+                                                            <textarea type='text' id='yes' name='tipo_de_deficiencia' rows="1" cols="20" style="margin-top:9px;" placeholder="Digite aqui a sua deficiência.">Nenhuma</textarea>
+                                                            @error('yes')
+                                                                <div >
+                                                                    <a style="color:red;">{{ $message }}</a>
+                                                                </div>
+                                                            @enderror
+                                                        </div>
                                                 </div>
                                             </div>
                                     </div>
@@ -111,44 +129,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="btn-group" style="margin-top:10px;">
-                                        <div>
-                                            <label for="nivel_de_formacao">Nível de Formação<a style="color:red"> *</a></label>
-                                            <select class="form-control @error('nivel_de_formacao') is-invalid @enderror" style="width:300px;" name="nivel_de_formacao">
-                                                @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
-                                                    @foreach ($candidatos as $item)
-                                                        <option>Ensino Fundamental Incompleto</option>
-                                                        <option>Ensino Fundamental Completo</option>
-                                                        <option>Ensino Médio Incompleto</option>
-                                                        <option>Ensino Médio Completo</option>
-                                                        <option>Técnico/Pós-Médio Incompleto</option>
-                                                        <option>Técnico/Pós-Médio Completo</option>
-                                                        <option>Tecnólogico Incompleto</option>
-                                                        <option>Superior Incompleto</option>
-                                                        <option>Tecnólogico Completo</option>
-                                                        <option>Superior Completo</option>
-                                                        selected
-                                                        <option value="{{$item->nivel_de_formacao}}"
-                                                        >{{$item->nivel_de_formacao}}</option>
-                                                    @endforeach
-                                                @else
-                                                    <option>Ensino Fundamental Incompleto</option>
-                                                    <option>Ensino Fundamental Completo</option>
-                                                    <option>Ensino Médio Incompleto</option>
-                                                    <option>Ensino Médio Completo</option>
-                                                    <option>Técnico/Pós-Médio Incompleto</option>
-                                                    <option>Técnico/Pós-Médio Completo</option>
-                                                    <option>Tecnólogico Incompleto</option>
-                                                    <option>Superior Incompleto</option>
-                                                    <option>Tecnólogico Completo</option>
-                                                    <option>Superior Completo</option>
-                                                @endif
-                                                </select>
-                                                @if($errors->has("nivel_de_formacao"))
-                                                    <span class="help-block">
-                                                        <strong>{{$errors->first("nivel_de_formacao")}}</strong>
-                                                    </span>
-                                                @endif
-                                        </div>
+
                                         <div style="margin-left:10px;">
                                             <div class="form-group" style="margin-left:10px;">
                                                 <label for="entradaFuncao">Função ou Cargo Pretendido<a style="color:red"> *</a></label>
@@ -277,12 +258,13 @@
     </div>
 </div>
 <script type="text/javascript">
-function yesnoCheck() {
+function yesnoCheck($text) {
     if (document.getElementById('yesCheck').checked) {
         document.getElementById('ifYes').style.visibility = 'visible';
     }
     else document.getElementById('ifYes').style.visibility = 'hidden';
-    clearTextArea();
+    //clearTextArea(" ");
+    document.getElementById('yes').value =$text;
 }
 
 var teste = function(obj)
@@ -303,8 +285,8 @@ function termoDeCompromisso(){
     }
 }
 
-function clearTextArea() {
-    document.getElementById('yes').value = " ";
+function clearTextArea($text) {
+    document.getElementById('yes').value =$text;
 }
 
 </script>

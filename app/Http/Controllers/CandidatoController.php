@@ -115,7 +115,6 @@ class CandidatoController extends Controller
             'data_de_nascimento'    => 'required|date',
             'celular'               => 'numeric',
             'funcao'                => 'required|string|max:255',
-            'nivel_de_formacao'     => 'required|string|max:255',
             'tipo_de_deficiencia'   => 'required|string|max:255',
         ]);
 
@@ -135,7 +134,6 @@ class CandidatoController extends Controller
             'telefone'           =>$request->telefone,
             'funcao'             =>$request->funcao,
             'celular'            =>$request->celular,
-            'nivel_de_formacao'  =>$request->nivel_de_formacao,
             'tipo_de_deficiencia'=>$request->tipo_de_deficiencia,
         ]);
         return redirect()->route('home');//view('principal_candidato');
@@ -212,7 +210,7 @@ class CandidatoController extends Controller
     //editar
     public function editarMiniCurriculo(){
         $resultado = DB::table('candidatos')
-        ->select('candidatos.nome_completo', 'candidatos.cpf','candidatos.email','candidatos.telefone','candidatos.celular','candidatos.nivel_de_formacao','candidatos.funcao','candidatos.tipo_de_deficiencia','candidatos.data_de_nascimento')
+        ->select('candidatos.nome_completo', 'candidatos.cpf','candidatos.email','candidatos.telefone','candidatos.celular','candidatos.funcao','candidatos.tipo_de_deficiencia','candidatos.data_de_nascimento')
         ->where('candidatos.user_id', 'ilike', Auth::user()->id)
         ->get();
         return view('curriculum',['candidatos' => $resultado]);
@@ -256,7 +254,6 @@ class CandidatoController extends Controller
             'data_de_nascimento'    => 'required|date',
             'celular'               => 'required|numeric',
             'funcao'                => 'required|string|max:255',
-            'nivel_de_formacao'     => 'required|string|max:255',
             'tipo_de_deficiencia'   => 'required|string|max:255',
         ]);
 
@@ -277,7 +274,6 @@ class CandidatoController extends Controller
             'celular'               =>  $request->celular,
             'telefone'              =>  $request->telefone,
             'funcao'                =>  $request->funcao,
-            'nivel_de_formacao'     =>  $request->nivel_de_formacao,
             'tipo_de_deficiencia'   =>  $request->tipo_de_deficiencia,
         ]);
 
