@@ -156,7 +156,7 @@ class CandidatoController extends Controller
             'rua'               => $request->rua,
             'numero'            => $request->numero,
         ]);
-        return redirect()->route('home');//view('principal_candidato');
+        return redirect()->route('abrir_painel_curriculum');//view('principal_candidato');
     }
 
     public function adicionarEscolaridade(Request $request){
@@ -174,7 +174,7 @@ class CandidatoController extends Controller
             'data_inicio'       => $request->data_inicio,
             'data_conclusao'    => $request->data_conclusao,
         ]);
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
     }
 
     public function adicionarExperiencias(Request $request){
@@ -191,7 +191,7 @@ class CandidatoController extends Controller
             'nome_cargo'      => $request->nome_cargo,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
     }
 
     public function adicionarMatch(Request $request){
@@ -277,7 +277,7 @@ class CandidatoController extends Controller
             'tipo_de_deficiencia'   =>  $request->tipo_de_deficiencia,
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
     }
 
     public function atualizarEndereco(Request $request){
@@ -299,7 +299,7 @@ class CandidatoController extends Controller
         ]);
 
 
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
 
     }
 
@@ -319,7 +319,7 @@ class CandidatoController extends Controller
             'data_inicio'       => $request->data_inicio,
             'data_conclusao'    => $request->data_conclusao,
         ]);
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
     }
 
     public function atualizarExperiencia(Request $request){
@@ -341,7 +341,7 @@ class CandidatoController extends Controller
             'data_fim'      =>  $request->data_fim,
         ]);
             $this->atualizarCargo($request);
-            return redirect()->route('home');
+            return redirect()->route('abrir_painel_curriculum');
     }
 
     private function atualizarCargo(Request $request){
@@ -350,7 +350,7 @@ class CandidatoController extends Controller
         ->update([
             'nome_cargo'  =>  $request->nome_cargo,
         ]);
-        return redirect()->route('home');
+        return redirect()->route('abrir_painel_curriculum');
     }
 
     //buscar

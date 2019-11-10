@@ -170,7 +170,7 @@ class EmpresaController extends Controller
         ->leftJoin('escolaridades','candidatos.id','=','escolaridades.candidato_id')
         ->leftJoin('experiencias','candidatos.id','=','experiencias.candidato_id')
         ->leftJoin('cargos','candidatos.id','=','cargos.experiencia_id')
-        ->select('candidatos.nome_completo','candidatos.data_de_nascimento','candidatos.cpf','candidatos.email', 'candidatos.telefone','candidatos.celular','candidatos.nivel_de_formacao','candidatos.funcao', 'candidatos.tipo_de_deficiencia','escolaridades.instituicao','escolaridades.curso','escolaridades.data_inicio','escolaridades.data_conclusao','experiencias.nome_empresa','experiencias.atribuicao','experiencias.data_inicio', 'experiencias.data_fim','cargos.nome_cargo','enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero')
+        ->select('candidatos.nome_completo','candidatos.data_de_nascimento','candidatos.cpf','candidatos.email', 'candidatos.telefone','candidatos.celular','candidatos.funcao', 'candidatos.tipo_de_deficiencia','escolaridades.instituicao','escolaridades.curso','escolaridades.data_inicio','escolaridades.data_conclusao','experiencias.nome_empresa','experiencias.atribuicao','experiencias.data_inicio', 'experiencias.data_fim','cargos.nome_cargo','enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero')
         ->where('candidatos.funcao','ilike','%'. $request->campo_texto3 .'%')
         ->get();
         return view('resultado_busca_nao_logado_sou_empresa', ['candidatos' => $resultado]);
@@ -180,7 +180,7 @@ class EmpresaController extends Controller
         ->leftJoin('escolaridades','candidatos.id','=','escolaridades.candidato_id')
         ->leftJoin('experiencias','candidatos.id','=','experiencias.candidato_id')
         ->leftJoin('cargos','candidatos.id','=','cargos.experiencia_id')
-        ->select('candidatos.nome_completo','candidatos.data_de_nascimento','candidatos.cpf','candidatos.email', 'candidatos.telefone','candidatos.celular','candidatos.nivel_de_formacao','candidatos.funcao', 'candidatos.tipo_de_deficiencia','escolaridades.instituicao','escolaridades.curso','escolaridades.data_inicio','escolaridades.data_conclusao','experiencias.nome_empresa','experiencias.atribuicao','experiencias.data_inicio', 'experiencias.data_fim','cargos.nome_cargo','enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero')
+        ->select('candidatos.nome_completo','candidatos.data_de_nascimento','candidatos.cpf','candidatos.email', 'candidatos.telefone','candidatos.celular','candidatos.funcao', 'candidatos.tipo_de_deficiencia','escolaridades.instituicao','escolaridades.curso','escolaridades.data_inicio','escolaridades.data_conclusao','experiencias.nome_empresa','experiencias.atribuicao','experiencias.data_inicio', 'experiencias.data_fim','cargos.nome_cargo','enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero')
         ->get();
         return view('resultado_busca_nao_logado_sou_empresa', ['candidatos' => $resultado]);
     }

@@ -49,7 +49,7 @@ $idTemp = 0;
                                     <button onclick="mostrarVaga({{$idTemp}})" class="button buttonCampo1">
                                         <div style="margin-left:-5px; margin-bottom:50px; width:200px; height:20px; text-align: left;">
                                             <p style="margin-bottom: -5px;">{{$item->nome_completo}}</p>
-                                            <p style="margin-bottom: -5px;">{{$item->nivel_de_formacao}}</p>
+                                            {{-- <p style="margin-bottom: -5px;">{{$item->nivel_de_formacao}}</p> --}}
                                             <p style="margin-bottom: -5px;">{{$item->funcao}}</p>
                                             </div>
                                     </button>
@@ -100,10 +100,10 @@ $idTemp = 0;
                                                 </div>
                                             </div><br>
                                             <div  style="margin-top:-19px;">
-                                                <div>
+                                                {{-- <div>
                                                     <a> {{"Nível Educacional: "}}{{$id->nivel_de_formacao}}</a> <br>
                                                     <a> {{"Função: "}}{{$id->funcao}}</a> <br>
-                                                </div>
+                                                </div> --}}
                                                 <a> {{"Deficiência: "}}{{$id->tipo_de_deficiencia}}</a> <br>
                                             </div>
                                             <hr style="margin-top:2px;">
