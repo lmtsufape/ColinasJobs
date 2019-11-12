@@ -119,27 +119,27 @@
                         </div>
                         <hr/>
                         <div class="form-group">
-                            <p>Atribuições<a style="color:red"> *</a></p>
-                            <textarea name="atribuicoes" class="@error('atribuicoes') is-invalid @enderror form-control" id="nome_completo" value="{{ old('atribuicoes') }}" rows="5" cols="50" placeholder="Digite aqui a atribuição que seu candidato deve ter"></textarea>
-                            @error('atribuicoes')
-                                <div >
-                                    <a style="color:red;">{{ $message }}</a>
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <p>Descrição<a style="color:red"> *</a></p>
                             <textarea name="descricao" class="@error('descricao') is-invalid @enderror form-control" id="nome_completo" value="{{ old('descricao') }}" rows="5" cols="50" placeholder="Digite aqui a descrição da vaga"></textarea>
                             @error('descricao')
-                                <div >
-                                    <a style="color:red;">{{ $message }}</a>
-                                </div>
+                            <div >
+                                <a style="color:red;">{{ $message }}</a>
+                            </div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <p>Habilidades Necessárias<a style="color:red"> *</a></p>
                             <textarea name="experiencia" class="@error('experiencia') is-invalid @enderror form-control" id="nome_completo" value="{{ old('experiencia') }}" rows="5" cols="50" placeholder="Digite aqui as hablidades necessárias que o seu candidato deve ter"></textarea>
                             @error('experiencia')
+                            <div >
+                                <a style="color:red;">{{ $message }}</a>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <p>Atribuições<a style="color:red"> *</a></p>
+                            <textarea name="atribuicoes" class="@error('atribuicoes') is-invalid @enderror form-control" id="nome_completo" value="{{ old('atribuicoes') }}" rows="5" cols="50" placeholder="Digite aqui a atribuição que seu candidato deve ter"></textarea>
+                            @error('atribuicoes')
                                 <div >
                                     <a style="color:red;">{{ $message }}</a>
                                 </div>
