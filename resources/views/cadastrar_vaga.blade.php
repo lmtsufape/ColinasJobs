@@ -137,8 +137,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <p>Experiência<a style="color:red"> *</a></p>
-                            <textarea name="experiencia" class="@error('experiencia') is-invalid @enderror form-control" id="nome_completo" value="{{ old('experiencia') }}" rows="5" cols="50" placeholder="Digite aqui a experiência que seu candidato deve ter"></textarea>
+                            <p>Habilidades Necessárias<a style="color:red"> *</a></p>
+                            <textarea name="experiencia" class="@error('experiencia') is-invalid @enderror form-control" id="nome_completo" value="{{ old('experiencia') }}" rows="5" cols="50" placeholder="Digite aqui as hablidades necessárias que o seu candidato deve ter"></textarea>
                             @error('experiencia')
                                 <div >
                                     <a style="color:red;">{{ $message }}</a>
