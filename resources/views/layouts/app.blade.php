@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Colinas') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,10 +19,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="screen" href="css/buttons.css"/>
+
+    <!-- Fonts Google -->
+    <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="buttons.css">
+
+
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div id="app" style="position: absolute; width:100%;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="position: absolute; width:100%;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -55,6 +66,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(!is_null( Auth::user()->candidato))
+                                        <a class="dropdown-item" href="{{ route('abrir_painel_curriculum') }}">
+                                            <div class="btn-group">
+                                                <div style="padding-left: 2%"><img src="icon/curriculum.png" alt="curriculum" width="17px" height="20px"></div>
+                                                <div style="margin-left:6px; margin-top:3px;">{{ __('Meu Currículo') }}</div>
+                                            </div>
+                                        </a>
+                                    <hr>
+                                    @elseif(!is_null( Auth::user()->empresa))
+                                        <a class="dropdown-item" href="{{ route('vaga') }}">
+                                            <div class="btn-group">
+                                                <div style="padding-left: 2%"><img src="icon/curriculum.png" alt="curriculum" width="17px" height="20px"></div>
+                                                <div style="margin-left:6px; margin-top:3px;">{{ __('Criar Vaga') }}</div>
+                                            </div>
+                                        </a>
+                                    <hr>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -65,6 +94,7 @@
                                         @csrf
                                     </form>
                                 </div>
+
                             </li>
                         @endguest
                     </ul>
@@ -76,5 +106,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
