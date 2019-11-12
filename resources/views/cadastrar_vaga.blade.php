@@ -40,7 +40,7 @@
                                         <option>Concurso</option>
                                         <option>Efetivo/CLT</option>
                                         <option>Estágio</option>
-                                        <option>Freelance/MEI</option>
+                                        <option>Freelancer/MEI</option>
                                         <option>Temporário</option>
                                         <option>Trainne</option>
                                         <option>Voluntário</option>
