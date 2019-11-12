@@ -69,9 +69,9 @@
                                 @enderror
                             </div>
 
-                            <div style="margin-left:30px;">
+                            <div style="margin-left:15px;">
                                 <label for="entradaCidade">Cidade<a style="color:red"> *</a></label>
-                                <select class="@error('cidade') is-invalid @enderror form-control" id="nome_completo" value="{{ old('cidade') }}" name="cidade">
+                                <select class="@error('cidade') is-invalid @enderror form-control" style="width:140px;" id="nome_completo" value="{{ old('cidade') }}" name="cidade">
                                         <option>Recife</option>
                                         <option>Olinda</option>
                                         <option>Garanhuns</option>
@@ -82,11 +82,11 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div style="margin-left:10px;">
-                                <label for="entradaBairro">Bairro<a style="color:red"> *</a></label>
-                                <input type="text" name="bairro" class="@error('bairro') is-invalid @enderror form-control" id="nome_completo" value="{{ old('bairro') }}" id="entrada_bairro" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
-                                <small id="entradaBairro" class="form-text text-muted">ex.: aaaaaa</small>
-                                @error('bairro')
+                            <div  style="margin-left:10px;">
+                                <label for="entradaRua">Rua<a style="color:red"> *</a></label>
+                                <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" id="nome_completo" value="{{ old('rua') }}" id="entrada_rua" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
+                                <small id="entradaRua" class="form-text text-muted">ex.: aaaaaa</small>
+                                @error('rua')
                                     <div >
                                         <a style="color:red;">{{ $message }}</a>
                                     </div>
@@ -97,10 +97,10 @@
 
                         <div class="btn-group">
                             <div>
-                                <label for="entradaRua">Rua<a style="color:red"> *</a></label>
-                                <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" id="nome_completo" value="{{ old('rua') }}" id="entrada_rua" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
-                                <small id="entradaRua" class="form-text text-muted">ex.: aaaaaa</small>
-                                @error('rua')
+                                <label for="entradaBairro">Bairro<a style="color:red"> *</a></label>
+                                <input type="text" name="bairro" class="@error('bairro') is-invalid @enderror form-control" id="nome_completo" value="{{ old('bairro') }}" id="entrada_bairro" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
+                                <small id="entradaBairro" class="form-text text-muted">ex.: aaaaaa</small>
+                                @error('bairro')
                                     <div >
                                         <a style="color:red;">{{ $message }}</a>
                                     </div>
