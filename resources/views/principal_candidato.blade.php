@@ -26,7 +26,7 @@
                         cursor: pointer;"> Procurar</button>
                         <small id="entradaFunção" class="form-text text-muted">ex.: pintor, mecânico</small>
                     </form>
-                    <div style="height: 37rem; margin-left:1px; overflow: auto; margin-top:20px; border: 1px solid #000; border-color:#e9e9e9; border-radius: 8px;">
+                    <div style="height: 45rem; margin-left:1px; overflow: auto; margin-top:20px; border: 1px solid #000; border-color:#e9e9e9; border-radius: 8px;">
                         <?php $i = 0; ?>
                         <ul style="height: 5rem;margin-top:20px; ">
                             <div style="margin-left:-33px;">
@@ -38,12 +38,18 @@
                                                 <div class="btn-form" style="margin-left:-7px; margin-bottom:50px; width:200px; height:20px; text-align: left;">
                                                     <div class="btn-group">
                                                         <div><img src="icon/paper.png" alt="paper" width="13px" height="13px"></div>
-                                                        <div style="margin-left:7px; margin-top:2px;">{{$item->nome_vaga}}</div>
+                                                    @if (strlen($item->nome_vaga) > 3)
+                                                        <?php  $str = substr($item->nome_vaga, 0, 25). ' ...'; ?>
+                                                        <div style="margin-left:7px; margin-top:2px;">{{$str}}</div>
+                                                    @endif
                                                     </div>
                                                     <br>
                                                     <div class="btn-group">
                                                         <div><img src="icon/company.png" alt="company" width="13px" height="13px"></div>
-                                                        <div style="margin-left:7px; margin-top:2px;">{{$item->empresa->nome_empresa}}</div>
+                                                        @if (strlen($item->empresa->nome_empresa) > 3)
+                                                            <?php  $str = substr($item->empresa->nome_empresa, 0, 25). ' ...'; ?>
+                                                            <div style="margin-left:7px; margin-top:2px;">{{$str}}</div>
+                                                        @endif
                                                     </div>
                                                     <br>
                                                     <div class="btn-group">
@@ -79,13 +85,13 @@
                                     @foreach($empresas as $id)
                                         <?php $idTemp++; ?>
                                         <div style="display: none" id="{{$idTemp}}">
-
                                             <a style="font-size:25px;"> {{$id->nome_vaga}}</a> <br>
                                             <a style="font-size:19px;"> {{$id->empresa->nome_empresa}}</a> <br>
-                                            <a> {{$item->empresa->endereco->cidade}}{{"/"}}{{$item->empresa->endereco->uf}}</a> <br>
+                                            <a> {{$id->empresa->endereco->cidade}}{{"/"}}{{$id->empresa->endereco->uf}}</a> <br>
                                             <a> <b>{{'Data de Publicação: '}}</b>{{$id->data_publicacao}}</a> <br>
                                             <div class="btn-group">
                                                 <a> <b>{{'Número de Vagas: '}}</b>{{$id->quantidade}}</a>
+
                                                 <a style="margin-left:5px;"> <b>{{'Vagas para PCD: '}}</b>{{$id->vaga_para_pcd}}</a>
                                             </div>
                                             <div class="btn-group">
@@ -121,21 +127,63 @@
                                                 </div>
                                             </div><br>
                                             <div>
-                                                <form action="{{route('adicionarMatch')}}" method="GET">
-                                                    <input type="hidden" name="empresa_id" value="{{$id->empresa->user_id}}">
-                                                    <input type="hidden" name="vaga_id" value="{{$id->id}}">
-                                                    <button type="submit" style="background-color:#4285f4;  border: none;
-                                                    border-radius: 8px;
-                                                    color: white;
-                                                    padding: 4px 11px;
-                                                    text-align: center;
-                                                    text-decoration: none;
-                                                    display: inline-block;
-                                                    font-size: 13px;
-                                                    margin: 4px 2px;
-                                                    cursor: pointer;">Tenho Interesse</button>
-                                                </form>
-                                            </div>
+
+                                                <?php $varTemp = count($id->match) ?>
+                                                <?php $i =0; ?>
+                                                @if($varTemp>=1)
+                                                    @foreach ($id->match as $item)
+                                                        @if($item->candidato_id == Auth::user()->candidato->id AND $item->vaga_id == $id->id)
+                                                            <form action="{{route('removerInteresseNaVaga')}}" method="GET">
+                                                                <input type="hidden" name="empresa_id" value="{{$id->empresa->user_id}}">
+                                                                <input type="hidden" name="vaga_id" value="{{$id->id}}">
+                                                                <button type="submit" style="background-color:red;  border: none;
+                                                                border-radius: 8px;
+                                                                color: white;
+                                                                padding: 4px 11px;
+                                                                text-align: center;
+                                                                text-decoration: none;
+                                                                display: inline-block;
+                                                                font-size: 13px;
+                                                                margin: 4px 2px;
+                                                                cursor: pointer;">Desfazer Interesse</button>
+                                                            </form>
+                                                            <?php break ?>
+                                                            <?php $i = $i +1; ?>
+                                                        @elseif($i==$varTemp-1)
+                                                            <form action="{{route('adicionarMatch')}}" method="GET">
+                                                                <input type="hidden" name="empresa_id" value="{{$id->empresa->user_id}}">
+                                                                <input type="hidden" name="vaga_id" value="{{$id->id}}">
+
+                                                                <button type="submit" style="background-color:#4285f4;  border: none;
+                                                                border-radius: 8px;
+                                                                color: white;
+                                                                padding: 4px 11px;
+                                                                text-align: center;
+                                                                text-decoration: none;
+                                                                display: inline-block;
+                                                                font-size: 13px;
+                                                                margin: 4px 2px;
+                                                                cursor: pointer;">Tenho Interesse</button>
+                                                            </form>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <form action="{{route('adicionarMatch')}}" method="GET">
+                                                        <input type="hidden" name="empresa_id" value="{{$id->empresa->user_id}}">
+                                                        <input type="hidden" name="vaga_id" value="{{$id->id}}">
+                                                        <button type="submit" style="background-color:#4285f4;  border: none;
+                                                        border-radius: 8px;
+                                                        color: white;
+                                                        padding: 4px 11px;
+                                                        text-align: center;
+                                                        text-decoration: none;
+                                                        display: inline-block;
+                                                        font-size: 13px;
+                                                        margin: 4px 2px;
+                                                        cursor: pointer;">Tenho Interesse</button>
+                                                    </form>
+                                                @endif
+                                               </div>
                                         </div>
                                     @endforeach
                                 @endif
