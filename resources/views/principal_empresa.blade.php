@@ -141,29 +141,39 @@
                                         </div>
                                         </div><br>
                                         <div  style="margin-top:-19px;">
-                                            <a> {{"Deficiência: "}}{{$item->vaga[$i]->match[$j]->tipo_de_deficiencia}}</a> <br>
+                                            <a> {{"Deficiência: "}}{{$item->vaga[$i]->match[$j]->candidato->tipo_de_deficiencia}}</a> <br>
                                         </div>
                                         <hr style="margin-top:2px;">
-                                            <p style="margin-top:-10px; font-size:19px;">Escolaridade</p>
-                                            <div style="margin-top:-10px;">
-                                                <a> {{"Instituição: "}}{{$id->instituicao}}</a> <br>
-                                                <a> {{"Curso: "}}{{$id->curso}}</a> <br>
-                                                <div>
-                                                    <a> {{"Data Entrada: "}}</a>{{--{{$id->data_inicio}}</a>--}}
-                                                    <a style="margin-left:10px;"> {{"Data Saída: "}}</a> {{--{{$id->data_conclusao}}</a>--}}
-                                                </div>
-                                            </div><br>
-                                            <hr style="margin-top:2px;">
-                                            <p style="margin-top:-10px; font-size:19px;">Experiência</p>
-                                            <div style="margin-top:-10px;">
-                                                <a> {{"Empresa: "}}{{$id->nome_empresa}}</a> <br>
-                                                <a> {{"Atribuição: "}}{{$id->atribuicao}}</a> <br>
-                                                <a> {{"Cargo: "}}{{$id->nome_cargo}}</a> <br>
-                                                <div>
-                                                    <a> {{"Data Saída: "}}</a>{{$id->data_fim}}</a>
-                                                </div>
-                                            </div><br>
-                                            <hr/>
+                                            <div>
+                                                @foreach ($item->vaga[$i]->match[$j]->candidato->escolaridade as $itemEscolaridade)
+                                                    <p style="margin-top:-10px; font-size:19px;">Escolaridade</p>
+                                                    <div style="margin-top:-10px;">
+                                                        <a> {{"Instituição: "}}{{$itemEscolaridade->instituicao}}</a> <br>
+                                                        <a> {{"Curso: "}}{{$itemEscolaridade->curso}}</a> <br>
+                                                        <div>
+                                                            <a> {{"Data Entrada: "}}</a>{{$itemEscolaridade->data_inicio}}</a>
+                                                            <a style="margin-left:10px;"> {{"Data Saída: "}}</a> {{$itemEscolaridade->data_conclusao}}</a>
+                                                        </div>
+                                                    </div><br>
+                                                    <hr style="margin-top:2px;">
+                                                @endforeach
+                                            </div>
+                                            <div>
+                                                @foreach ($item->vaga[$i]->match[$j]->candidato->experiencia as $itemExperiencia)
+                                                    <p style="margin-top:-10px; font-size:19px;">Experiência</p>
+                                                    <div style="margin-top:-10px;">
+                                                        <a> {{"Empresa: "}}{{$itemExperiencia->nome_empresa}}</a> <br>
+                                                        <a> {{"Atribuição: "}}{{$itemExperiencia->atribuicao}}</a> <br>
+                                                        @foreach ($itemExperiencia->cargo as $itemCargo)
+                                                            <a> {{"Cargo: "}}{{$itemCargo->nome_cargo}}</a> <br>
+                                                        @endforeach
+                                                        <div>
+                                                            <a> {{"Data Saída: "}}</a>{{$itemExperiencia->data_fim}}</a>
+                                                        </div>
+                                                    </div><br>
+                                                @endforeach
+                                            </div>
+                                        <hr/>
                                     </div>
                                 @endfor
                             @endfor

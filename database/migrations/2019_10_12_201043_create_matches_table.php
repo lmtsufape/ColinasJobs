@@ -17,6 +17,7 @@ class CreateMatchesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('candidato_id');
             $table->integer('vaga_id');
+            $table->integer('empresa_id')->nullable();
             $table->timestamps();
         });
     }

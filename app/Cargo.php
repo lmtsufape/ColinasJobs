@@ -8,7 +8,7 @@ class Cargo extends Model
 {
     protected $fillable = [ 'experiencia_id', 'nome_cargo'];
 
-  public function user(){
-    return $this->belongsTo('App\User', 'experiencia_id');
-  }
+    public function experiencia(){
+        return $this->belongsTo('App\Experiencia', 'experiencia_id');
+      }
 }

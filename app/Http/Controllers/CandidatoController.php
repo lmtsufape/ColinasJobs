@@ -80,6 +80,7 @@ class CandidatoController extends Controller
         'bairro'            => $request->bairro,
         'rua'               => $request->rua,
         'numero'            => $request->numero,
+        'complemento'       => $request->complemento,
       ]);
       Escolaridade::create([
         'candidato_id'      => Auth::user()->candidato->id,
@@ -147,6 +148,7 @@ class CandidatoController extends Controller
             'bairro'                =>  'max:255',
             'rua'                   =>  'max:255',
             'numero'                =>  'max:255',
+            'complemento'           =>  'max:255',
         ]);
         Endereco::create([
             'candidato_id'      => Auth::user()->candidato->id,
@@ -155,12 +157,13 @@ class CandidatoController extends Controller
             'bairro'            => $request->bairro,
             'rua'               => $request->rua,
             'numero'            => $request->numero,
+            'complemento'       => $request->complemento,
         ]);
         return redirect()->route('abrir_painel_curriculum');//view('principal_candidato');
     }
 
     public function adicionarEscolaridade(Request $request){
-        //dd($request);
+       // dd(Auth::user()->candidato->user_id);
         $this->validate($request,[
             'instituicao'           =>  'string|min:3|max:255',
             'curso'                 =>  'string|min:3|max:255',
@@ -200,11 +203,29 @@ class CandidatoController extends Controller
             'vaga_id'                    =>  'required',
             'empresa_id'                 =>  'required',
         ]);
-        Match::create([
-            'candidato_id'      => Auth::user()->candidato->id,
-            'vaga_id'           => $request->vaga_id,
+        if(self::verificaInteresseNaVaga($request)!=true){
+            Match::create([
+                'candidato_id'      => Auth::user()->candidato->id,
+                'vaga_id'           => $request->vaga_id,
+            ]);
+            return redirect()->route('home');//view('principal_candidato');
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function verificaInteresseNaVaga(Request $request){
+        $resultado = Match::where('candidato_id',Auth::user()->candidato->id)->where('vaga_id',$request->vaga_id)->exists();
+        return $resultado;
+    }
+
+    public function removerInteresseNaVaga(Request $request){
+        $this->validate($request,[
+            'vaga_id'                    =>  'required',
+            'empresa_id'                 =>  'required',
         ]);
-        return redirect()->route('home');//view('principal_candidato');
+        $resultado = Match::where('candidato_id',Auth::user()->candidato->id)->where('vaga_id',$request->vaga_id)->delete();
+        return redirect()->route('home');
     }
 
     //editar
@@ -218,7 +239,7 @@ class CandidatoController extends Controller
 
     public function editarEndereco(){
         $resultado = DB::table('enderecos')
-        ->select('enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero')
+        ->select('enderecos.uf','enderecos.cidade','enderecos.bairro','enderecos.rua','enderecos.numero', 'enderecos.complemento')
         ->where('enderecos.candidato_id','ilike', Auth::user()->candidato->id)
         ->get();
         //dd(!is_null($resultado));
@@ -296,6 +317,7 @@ class CandidatoController extends Controller
             'bairro'        =>  $request->bairro,
             'rua'           =>  $request->rua,
             'numero'        =>  $request->numero,
+            'complemento'   =>  $request->complemento,
         ]);
 
 
@@ -370,7 +392,7 @@ class CandidatoController extends Controller
             $resultado = DB::table('empresas')
             ->join('enderecos','empresas.id','=', 'enderecos.empresa_id')
             ->join('vagas','empresas.id','=','vagas.empresa_id')
-            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
+            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero','enderecos.complemento', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
             ->get();
             return view('resultado_busca_nao_logado', ['empresas' => $resultado]);
         }
@@ -379,7 +401,7 @@ class CandidatoController extends Controller
             $resultado = DB::table('empresas')
             ->join('enderecos','empresas.id','=', 'enderecos.empresa_id')
             ->join('vagas','empresas.id','=','vagas.empresa_id')
-            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
+            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero','enderecos.complemento', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
             ->where('enderecos.cidade','ilike','%'. $request->campo_texto2.'%')
             ->where('vagas.nome_vaga','ilike','%'. $request->campo_texto1 .'%')
             ->orwhere('empresas.nome_empresa','ilike','%'. $request->campo_texto1 .'%')
@@ -391,7 +413,7 @@ class CandidatoController extends Controller
             $resultado = DB::table('empresas')
             ->join('enderecos','empresas.id','=', 'enderecos.empresa_id')
             ->join('vagas','empresas.id','=','vagas.empresa_id')
-            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
+            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero','enderecos.complemento', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
             ->where('empresas.nome_empresa','ilike','%'. $request->campo_texto1 .'%')
             ->orwhere('vagas.nome_vaga','ilike','%'. $request->campo_texto1 .'%')
             ->get();
@@ -403,7 +425,7 @@ class CandidatoController extends Controller
             $resultado = DB::table('empresas')
             ->join('enderecos','empresas.id','=', 'enderecos.empresa_id')
             ->join('vagas','empresas.id','=','vagas.empresa_id')
-            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
+            ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero','enderecos.complemento', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
             ->where('enderecos.cidade','ilike','%'. $request->campo_texto2 .'%')
             ->get();
             return view('resultado_busca_nao_logado', ['empresas' => $resultado]);
@@ -416,7 +438,7 @@ class CandidatoController extends Controller
     public function detalheOportunidade(Request $request){
         $resultado = DB::table('empresas')->join('enderecos','empresas.id','=', 'enderecos.empresa_id')
         ->join('vagas','empresas.id','=','vagas.empresa_id')
-        ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
+        ->select('vagas.nome_vaga','empresas.nome_empresa','enderecos.uf', 'enderecos.cidade', 'enderecos.bairro','enderecos.rua', 'enderecos.numero','enderecos.complemento', 'vagas.data_publicacao','vagas.atribuicoes','vagas.experiencia','vagas.descricao','vagas.quantidade','vagas.salario','vagas.vaga_para_pcd','vagas.tipo_de_vaga', 'vagas.tipo_de_remuneracao' )
         ->where('enderecos.cidade','ilike','garanhuns')
         ->where('vagas.nome_vaga', 'ilike', 'design de sobrancelhas')
         ->get();

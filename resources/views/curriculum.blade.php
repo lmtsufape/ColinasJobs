@@ -79,7 +79,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="btn-group" style="margin-left:30px;">
+                                <div class="btn-group" style="margin-left:15px;">
                                     <div class="btn-group">
                                             <div>
                                                 <label for="cpf">CPF<a style="color:red"> *</a></label>
@@ -114,8 +114,8 @@
                                                             @endforeach
 
                                                         @endif
-                                                        <div id="ifYes" style="visibility:hidden">
-                                                            <textarea type='text' id='yes' name='tipo_de_deficiencia' rows="1" cols="20" style="margin-top:9px;" placeholder="Digite aqui a sua deficiência.">Nenhuma</textarea>
+                                                        <div id="ifYes" style="visibility:hidden; position:absolute;">
+                                                            <textarea type='text' id='yes' name='tipo_de_deficiencia' rows="9" cols="20" style="margin-top:9px;" placeholder="Digite aqui a sua deficiência.">Nenhuma</textarea>
                                                             @error('yes')
                                                                 <div >
                                                                     <a style="color:red;">{{ $message }}</a>
@@ -130,15 +130,15 @@
                             <div class="form-group">
                                 <div class="btn-group" style="margin-top:10px;">
 
-                                        <div style="margin-left:10px;">
-                                            <div class="form-group" style="margin-left:10px;">
+                                        <div>
+                                            <div class="form-group">
                                                 <label for="entradaFuncao">Função ou Cargo Pretendido<a style="color:red"> *</a></label>
                                                 @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
                                                     @foreach ($candidatos as $item)
-                                                        <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{$item->funcao}}" placeholder="ex. mecânico, pintor, segurança">
+                                                        <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:355px;" id="entradaFuncao" value="{{$item->funcao}}" placeholder="ex. mecânico, pintor, segurança">
                                                     @endforeach
                                                 @else
-                                                    <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:310px;" id="entradaFuncao" value="{{ old('funcao') }}" placeholder="ex. mecânico, pintor, segurança">
+                                                    <input type="text" name="funcao" class="@error('funcao') is-invalid @enderror form-control" style="width:355px;" id="entradaFuncao" value="{{ old('funcao') }}" placeholder="ex. mecânico, pintor, segurança">
                                                 @endif
                                                 <p style="color:blue;"><small>(Separe as Funções ou Cargos Pretendidos por vírgula)</small></p>
                                                 @error('funcao')
@@ -173,10 +173,10 @@
                                         <label for="entradaCelular">Celular<a style="color:red"> *</a></label>
                                         @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
                                             @foreach ($candidatos as $item)
-                                                <input type="tel" name="celular" class="@error('celular') is-invalid @enderror form-control" value="{{$item->celular}}" style="width:200px;" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                                <input type="tel" name="celular" class="@error('celular') is-invalid @enderror form-control" value="{{$item->celular}}" style="width:170px;" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
                                             @endforeach
                                         @else
-                                            <input type="tel" name="celular" class="@error('celular') is-invalid @enderror form-control" value="{{ old('celular') }}" style="width:200px;" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                            <input type="tel" name="celular" class="@error('celular') is-invalid @enderror form-control" value="{{ old('celular') }}" style="width:170px;" id="entradaCelular" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
                                         @endif
                                         <small id="entradaCelular" class="form-text text-muted">ex.: XXXXXXXXXXX</small>
                                         @error('celular')
@@ -189,10 +189,10 @@
                                         <label for="entradaTelefone">Telefone </label>
                                         @if(isset($candidatos)) {{--Verifica se o objeto candidato existe--}}
                                             @foreach ($candidatos as $item)
-                                                <input type="tel" name="telefone" class="@error('telefone') is-invalid @enderror form-control" value="{{$item->telefone}}" style="width:200px;" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                                <input type="tel" name="telefone" class="@error('telefone') is-invalid @enderror form-control" value="{{$item->telefone}}" style="width:170px;" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
                                             @endforeach
                                         @else
-                                            <input type="tel" name="telefone" class="@error('telefone') is-invalid @enderror form-control" value="{{ old('telefone') }}" style="width:200px;" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
+                                            <input type="tel" name="telefone" class="@error('telefone') is-invalid @enderror form-control" value="{{ old('telefone') }}" style="width:170px;" id="entradaTelefone" aria-describedby="emailHelp" placeholder="ex.: XXXXXXXXXXX">
                                         @endif
                                         <small id="entradaTelefone" class="form-text text-muted">ex.: XXXXXXXXXXX</small>
                                         @error('telefone')

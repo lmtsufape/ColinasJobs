@@ -14,5 +14,16 @@ class Candidato extends Model{
   public function favorito(){
     return $this->hasMany('App\Favorito');
   }
+  public function endereco(){
+    return $this->belongsTo('App\Endereco', 'user_id');
+  }
+  public function escolaridade(){
+    return $this->hasMany('App\Escolaridade');
+  }
+  public function experiencia(){
+    return $this->hasMany('App\Experiencia');
+  }
+
+
 
 }

@@ -27,38 +27,57 @@
                                 </div>
                                 <div style="height: 185px;border-left: 1px solid;color:#d3d3d3; margin-top:5px;">
                                 </div>
-                                <div class="form-group" style="margin-left:20px; margin-top:15px;">
-                                    <div >
-                                        <label for="entradaUf">UF<a style="color:red"> *</a></label>
-                                        <select class="form-control form-control" style="width:70px;" name="uf">
-                                            @if(isset($enderecos)) {{--Verifica se o objeto endereco existe--}}
+                                <div class="form-group">
+                                    <div class="btn-group" style="margin-left:20px; margin-top:15px;">
+                                        <div >
+                                            <label for="entradaUf">UF<a style="color:red"> *</a></label>
+                                            <select class="form-control form-control" style="width:70px;" name="uf">
+                                                @if(isset($enderecos)) {{--Verifica se o objeto endereco existe--}}
+                                                        <option>PE</option>
+                                                @else
                                                     <option>PE</option>
-                                            @else
-                                                <option>PE</option>
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div style="margin-top:20px;">
-                                        <label for="entradaCidade">Cidade<a style="color:red"> *</a></label>
-                                        <select class="form-control form-control" style="width:200px;" name="cidade">
-                                            @if(isset($enderecos)) {{--Verifica se o objeto candidato existe--}}
-                                                @foreach ($enderecos as $item)
-                                                selected
-                                                    <option value="{{$item->cidade}}"
-                                                    >{{$item->cidade}}</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div style="margin-left:15px;">
+                                            <label for="entradaCidade">Cidade<a style="color:red"> *</a></label>
+                                            <select class="form-control form-control" style="width:300px;" name="cidade">
+                                                @if(isset($enderecos)) {{--Verifica se o objeto candidato existe--}}
+                                                    @foreach ($enderecos as $item)
+                                                    selected
+                                                        <option value="{{$item->cidade}}"
+                                                        >{{$item->cidade}}</option>
+                                                        <option>Recife</option>
+                                                        <option>Garanhuns</option>
+                                                        <option>Caruaru</option>
+                                                        <option>Olinda</option>
+
+                                                    @endforeach
+                                                @endif
                                                     <option>Recife</option>
                                                     <option>Garanhuns</option>
                                                     <option>Caruaru</option>
                                                     <option>Olinda</option>
 
-                                                @endforeach
-                                            @endif
-                                                <option>Recife</option>
-                                                <option>Garanhuns</option>
-                                                <option>Caruaru</option>
-                                                <option>Olinda</option>
-
-                                        </select>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:20px; margin-top:10px;">
+                                        <label for="rua">Rua</label>
+                                        <?php if(!is_null($enderecos)){ ?> {{--Verifica se o objeto candidato existe--}}
+                                        @if(count($enderecos)==0)
+                                            <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" value="{{ old('rua') }}" style="width:385px;" id="rua" aria-describedby="emailHelp" placeholder="Digite o nome da rua">
+                                        @endif
+                                        @foreach ($enderecos as $item)
+                                            <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" value="{{$item->rua}}" style="width:385px;" id="rua" aria-describedby="emailHelp" placeholder="Digite o nome da rua">
+                                        @endforeach
+                                        <?php } ?>
+                                        <small id="rua" class="form-text text-muted">ex.: Prosperidade</small>
+                                        @error('rua')
+                                            <div >
+                                                <a style="color:red;">{{ $message }}</a>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -82,26 +101,9 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="btn-group" style="margin-left:30px;">
+                                <div class="btn-group" >
                                     <div class="btn-group">
-                                            <div>
-                                                <label for="rua">Rua</label>
-                                                <?php if(!is_null($enderecos)){ ?> {{--Verifica se o objeto candidato existe--}}
-                                                @if(count($enderecos)==0)
-                                                    <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" value="{{ old('rua') }}" style="width:200px;" id="rua" aria-describedby="emailHelp" placeholder="Digite o nome da rua">
-                                                @endif
-                                                @foreach ($enderecos as $item)
-                                                    <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" value="{{$item->rua}}" style="width:200px;" id="rua" aria-describedby="emailHelp" placeholder="Digite o nome da rua">
-                                                @endforeach
-                                                <?php } ?>
-                                                <small id="rua" class="form-text text-muted">ex.: Prosperidade</small>
-                                                @error('rua')
-                                                    <div >
-                                                        <a style="color:red;">{{ $message }}</a>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div style="margin-left:30px;">
+                                            <div style="margin-left:20px;">
                                                 <div class="form-group">
                                                     <label for="numero">Número</label>
                                                     <?php if(!is_null($enderecos)){ ?> {{--Verifica se o objeto candidato existe--}}
@@ -120,6 +122,24 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div style="margin-left:15px;">
+                                                <label for="complemento">Complemento</label>
+                                                <?php if(!is_null($enderecos)){ ?> {{--Verifica se o objeto candidato existe--}}
+                                                @if(count($enderecos)==0)
+                                                    <input type="text" name="complemento" class="@error('complemento') is-invalid @enderror form-control" value="{{ old('complemento') }}" style="width:220px;" id="complemento" aria-describedby="emailHelp" placeholder="Complemento">
+                                                @endif
+                                                @foreach ($enderecos as $item)
+                                                    <input type="text" name="complemento" class="@error('complemento') is-invalid @enderror form-control" value="{{$item->complemento}}" style="width:220px;" id="complemento" aria-describedby="emailHelp" placeholder="Complemento">
+                                                @endforeach
+                                                <?php } ?>
+                                                <small id="numero" class="form-text text-muted">ex.: Casa, Apartamento</small>
+                                                @error('complemento')
+                                                    <div >
+                                                        <a style="color:red;">{{ $message }}</a>
+                                                    </div>
+                                                @enderror
+                                            </div>
+
                                     </div>
                                 </div>
                             </div>
