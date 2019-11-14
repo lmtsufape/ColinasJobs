@@ -8,7 +8,10 @@ class Experiencia extends Model
 {
     protected $fillable = [ 'candidato_id', 'nome_empresa', 'atribuicao', 'data_inicio', 'data_fim'];
 
-  public function user(){
-    return $this->belongsTo('App\User', 'candidato_id');
-  }
+    public function candidato(){
+        return $this->belongsTo('App\Candidato', 'candidato_id');
+    }
+    public function cargo(){
+        return $this->hasMany('App\Cargo');
+    }
 }

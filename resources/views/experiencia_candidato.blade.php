@@ -91,7 +91,7 @@
                             </div>
                                 <div class="btn-group" style="margin-top:15px; margin-left:220px">
                                         <div>
-                                            <label for="entradaDataInicio">Entrada<a style="color:red"> *</a></label>
+                                            <label for="entradaDataInicio">Início<a style="color:red"> *</a></label>
 
                                             <?php if(!is_null($experiencias)){ ?>
                                                 @if(count($experiencias)==0)
@@ -111,7 +111,7 @@
                                             @enderror
                                         </div>
                                         <div style="margin-left:20px;">
-                                                <label for="entradaDataFim">Saída<a style="color:red"> *</a></label>
+                                                <label for="entradaDataFim">Fim<a style="color:red"> *</a></label>
 
                                                 <?php if(!is_null($experiencias)){ ?>
                                                     @if(count($experiencias)==0)
@@ -171,6 +171,13 @@
                                  </div>
                         </form>
                     </div>
+                </div>
+                <div>
+                    <form action="{{route('abrir_painel_curriculum')}}">
+                        <div style="padding:10px; float:right;">
+                            <button type="submit">Voltar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@
                         <div class="btn-group">
                             <div>
                                 <label for="entradaVaga">Nome da Vaga<a style="color:red"> *</a></label>
-                                <input type="text" name="nome_vaga" class="@error('nome_vaga') is-invalid @enderror form-control" value="{{ old('nome_vaga') }}" id="entrada_vaga" aria-describedby="emailHelp" placeholder="ex.: Design de Sobrancelhas, Vigilante, Porteiro">
+                                <input type="text" name="nome_vaga" class="@error('nome_vaga') is-invalid @enderror form-control" style="width:400px;" value="{{ old('nome_vaga') }}" id="entrada_vaga" aria-describedby="emailHelp" placeholder="ex.: Design de Sobrancelhas, Vigilante, Porteiro">
                                 <small id="entradaVaga" class="form-text text-muted">ex.: Design de Sobrancelhas, Vigilante, Porteiro</small>
                                 @error('nome_vaga')
                                     <div >
@@ -40,7 +40,7 @@
                                         <option>Concurso</option>
                                         <option>Efetivo/CLT</option>
                                         <option>Estágio</option>
-                                        <option>Freelance/MEI</option>
+                                        <option>Freelancer/MEI</option>
                                         <option>Temporário</option>
                                         <option>Trainne</option>
                                         <option>Voluntário</option>
@@ -55,9 +55,9 @@
                         <br>
                         <hr/>
                         <div class="btn-group">
-                            <div>
+                            <div >
                                 <label for="entradaUF">UF<a style="color:red"> *</a></label>
-                                <select class="@error('uf') is-invalid @enderror form-control" id="nome_completo" value="{{ old('uf') }}" name="uf">
+                                <select  class="@error('uf') is-invalid @enderror form-control" id="nome_completo" value="{{ old('uf') }}" name="uf">
                                         <option>PE</option>
                                         <option>PB</option>
                                         <option>PA</option>
@@ -69,9 +69,9 @@
                                 @enderror
                             </div>
 
-                            <div style="margin-left:30px;">
+                            <div style="margin-left:15px;">
                                 <label for="entradaCidade">Cidade<a style="color:red"> *</a></label>
-                                <select class="@error('cidade') is-invalid @enderror form-control" id="nome_completo" value="{{ old('cidade') }}" name="cidade">
+                                <select class="@error('cidade') is-invalid @enderror form-control" style="width:200px;" id="nome_completo" value="{{ old('cidade') }}" name="cidade">
                                         <option>Recife</option>
                                         <option>Olinda</option>
                                         <option>Garanhuns</option>
@@ -82,11 +82,11 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div style="margin-left:10px;">
-                                <label for="entradaBairro">Bairro<a style="color:red"> *</a></label>
-                                <input type="text" name="bairro" class="@error('bairro') is-invalid @enderror form-control" id="nome_completo" value="{{ old('bairro') }}" id="entrada_bairro" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
-                                <small id="entradaBairro" class="form-text text-muted">ex.: aaaaaa</small>
-                                @error('bairro')
+                            <div  style="margin-left:10px;">
+                                <label for="entradaRua">Rua<a style="color:red"> *</a></label>
+                                <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" id="nome_completo" style="width:250px;" value="{{ old('rua') }}" id="entrada_rua" aria-describedby="emailHelp" placeholder="ex.: Nome da Rua">
+                                <small id="entradaRua" class="form-text text-muted">ex.: aaaaaa</small>
+                                @error('rua')
                                     <div >
                                         <a style="color:red;">{{ $message }}</a>
                                     </div>
@@ -97,10 +97,10 @@
 
                         <div class="btn-group">
                             <div>
-                                <label for="entradaRua">Rua<a style="color:red"> *</a></label>
-                                <input type="text" name="rua" class="@error('rua') is-invalid @enderror form-control" id="nome_completo" value="{{ old('rua') }}" id="entrada_rua" aria-describedby="emailHelp" placeholder="ex.: aaaaaa">
-                                <small id="entradaRua" class="form-text text-muted">ex.: aaaaaa</small>
-                                @error('rua')
+                                <label for="entradaBairro">Bairro<a style="color:red"> *</a></label>
+                                <input type="text" name="bairro" class="@error('bairro') is-invalid @enderror form-control" id="nome_completo" style="width:400px;" value="{{ old('bairro') }}" id="entrada_bairro" aria-describedby="emailHelp" placeholder="ex.: Nome do Bairro">
+                                <small id="entradaBairro" class="form-text text-muted">ex.: aaaaaa</small>
+                                @error('bairro')
                                     <div >
                                         <a style="color:red;">{{ $message }}</a>
                                     </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div style="margin-left:10px;">
                                 <label for="entradaNumero">Número<a style="color:red"> *</a></label>
-                                <input type="text" name="numero" class="@error('numero') is-invalid @enderror form-control" id="nome_completo" value="{{ old('numero') }}" id="entrada_numero" placeholder="ex.: aaaaaa">
+                                <input type="text" name="numero" class="@error('numero') is-invalid @enderror form-control" id="nome_completo" style="width:130px;" value="{{ old('numero') }}" id="entrada_numero" placeholder="ex.: Número">
                                 <small id="entradaNumero" class="form-text text-muted">ex.: aaaaaa</small>
                                 @error('numero')
                                     <div >
@@ -117,29 +117,39 @@
                                 @enderror
                             </div>
                         </div>
-                        <hr/>
-                        <div class="form-group">
-                            <p>Atribuições<a style="color:red"> *</a></p>
-                            <textarea name="atribuicoes" class="@error('atribuicoes') is-invalid @enderror form-control" id="nome_completo" value="{{ old('atribuicoes') }}" rows="5" cols="50" placeholder="Digite aqui a atribuição que seu candidato deve ter"></textarea>
-                            @error('atribuicoes')
+                        <div style="margin-top:10px;">
+                            <label for="entradaComplemento">Complemento<a style="color:red"> *</a></label>
+                            <input type="text" name="complemento" class="@error('complemento') is-invalid @enderror form-control" id="complemento" style="width:100%;" value="{{ old('complemento') }}" id="complemento" placeholder="ex.: Complemento">
+                            <small id="entradaComplemento" class="form-text text-muted">ex.: Perto da Praça, Próximo ao Mercado</small>
+                            @error('complemento')
                                 <div >
                                     <a style="color:red;">{{ $message }}</a>
                                 </div>
                             @enderror
                         </div>
+                        <hr/>
                         <div class="form-group">
                             <p>Descrição<a style="color:red"> *</a></p>
                             <textarea name="descricao" class="@error('descricao') is-invalid @enderror form-control" id="nome_completo" value="{{ old('descricao') }}" rows="5" cols="50" placeholder="Digite aqui a descrição da vaga"></textarea>
                             @error('descricao')
-                                <div >
-                                    <a style="color:red;">{{ $message }}</a>
-                                </div>
+                            <div >
+                                <a style="color:red;">{{ $message }}</a>
+                            </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <p>Experiência<a style="color:red"> *</a></p>
-                            <textarea name="experiencia" class="@error('experiencia') is-invalid @enderror form-control" id="nome_completo" value="{{ old('experiencia') }}" rows="5" cols="50" placeholder="Digite aqui a experiência que seu candidato deve ter"></textarea>
+                            <p>Habilidades Necessárias<a style="color:red"> *</a></p>
+                            <textarea name="experiencia" class="@error('experiencia') is-invalid @enderror form-control" id="nome_completo" value="{{ old('experiencia') }}" rows="5" cols="50" placeholder="Digite aqui as hablidades necessárias que o seu candidato deve ter"></textarea>
                             @error('experiencia')
+                            <div >
+                                <a style="color:red;">{{ $message }}</a>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <p>Atribuições<a style="color:red"> *</a></p>
+                            <textarea name="atribuicoes" class="@error('atribuicoes') is-invalid @enderror form-control" id="nome_completo" value="{{ old('atribuicoes') }}" rows="5" cols="50" placeholder="Digite aqui a atribuição que seu candidato deve ter"></textarea>
+                            @error('atribuicoes')
                                 <div >
                                     <a style="color:red;">{{ $message }}</a>
                                 </div>

@@ -152,6 +152,13 @@
                         </form>
                     </div>
                 </div>
+                <div>
+                    <form action="{{route('abrir_painel_curriculum')}}">
+                        <div style="padding:10px; float:right;">
+                            <button type="submit">Voltar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
