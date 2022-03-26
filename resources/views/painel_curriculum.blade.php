@@ -82,6 +82,7 @@
 
 
 
+
                     {{-- <p style="text-align: center; font-size:20px; font-family: open sans,arial,sans-serif;
                     font-weight: 300; line-height: 1.29;">Sou candidato e desejo colocar o</br>
                     meu currículo no Colinas Jobs.</p>
@@ -107,6 +108,13 @@
                             font-size: 19px;" type="submit">Editar Escolaridade</button>
                         </div>
                     </form> --}}
+                </div>
+                <div>
+                    <form action="{{route('home')}}">
+                        <div style="padding:10px; float:right;">
+                            <button type="submit">Sair</button>
+                        </div>
+                    </form>
                 </div>
             </div>
                 {{-- <div class="card" style="float:right;">

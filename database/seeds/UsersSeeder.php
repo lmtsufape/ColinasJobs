@@ -40,7 +40,6 @@ class UsersSeeder extends Seeder
                 'email'                 =>  $faker->email,
                 'telefone'              =>  $faker->tollFreePhoneNumber,
                 'celular'               =>  $faker->tollFreePhoneNumber,
-                'nivel_de_formacao'     =>  "superior completo",
                 'tipo_de_deficiencia'   =>  " ",
                 'data_de_nascimento'    =>  $faker->dateTime,
             ]);

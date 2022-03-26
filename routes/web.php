@@ -82,6 +82,8 @@ Route::group(['middleware' => 'verifica_email'], function(){
 
         Route::get('/adicionarMatch', 'CandidatoController@adicionarMatch')->name('adicionarMatch');
 
+        Route::get('/removerInteresseNaVaga', 'CandidatoController@removerInteresseNaVaga')->name('removerInteresseNaVaga');
+
 
         #Empresa
 
@@ -96,5 +98,9 @@ Route::group(['middleware' => 'verifica_email'], function(){
         Route::post('/adicionarVaga', 'EmpresaController@adicionarVaga')->name('adicionarVaga');
 
         Route::get('/resultadoCandidato', 'CandidatoController@buscarCandidato') ->name('buscarCandidato');
+
+        Route::get('/tenhoInteresseNoCandidato', 'CandidatoController@tenhoInteresseNoCandidato')->name('tenhoInteresseNoCandidato');
+
+        Route::get('/naoTenhoInteresseNoCandidato', 'CandidatoController@naoTenhoInteresseNoCandidato')->name('naoTenhoInteresseNoCandidato');
 
 });
